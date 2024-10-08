@@ -25,6 +25,7 @@ namespace EfDemo
             dgvCustomers.DataSource = cliente;
         }
 
+        //Obtener Cliente por ID
         private void btnTodos_Click(object sender, EventArgs e)
         {
             var cliente = cr.ObtenerPorID(tboxObtenerTodos.Text);
