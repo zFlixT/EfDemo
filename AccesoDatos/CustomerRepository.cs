@@ -15,6 +15,7 @@ namespace AccesoDatos
 
             return cliente.ToList();
         }
+
         public Customers ObtenerPorID(string id)
         {
             var clientes = from cm in contexto.Customers where cm.CustomerID == id select cm;
@@ -24,6 +25,18 @@ namespace AccesoDatos
         public int InsertarCliente(Customers customers)
         {
             contexto.Customers.Add(customers);
+            return contexto.SaveChanges();
+        }
+
+        public int UpdateCliente(Customers customers) { 
+        var registro = ObtenerPorID(customers.CustomerID);
+            if (registro != null) { 
+                registro.CustomerID = customers.CustomerID;
+                registro.ContactTitle = customers.ContactTitle;
+                registro.Address = customers.Address;
+                registro.ContactName = customers.ContactName;
+                registro.CompanyName = customers.CompanyName;
+            }
             return contexto.SaveChanges();
         }
     }
